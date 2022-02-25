@@ -5,8 +5,7 @@
         <el-form
           label-position="top"
           label-width="100px"
-          class="box-shadow form"
-        >
+          class="box-shadow form"        >
           <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="Bingo Card Value" required>
