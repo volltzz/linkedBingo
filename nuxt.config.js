@@ -27,7 +27,7 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: [{ path: '@/components', pathPrefix: false}],
+  components: [{ path: '@/components', pathPrefix: false }],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -48,7 +48,6 @@ export default {
   auth: {
     strategies: {
       local: {
-        scheme: 'refresh',
         token: {
           property: 'token',
           global: true,
@@ -70,7 +69,7 @@ export default {
           logout: false,
           user: false
         },
-        tokenType:''
+        tokenType: ''
       }
     }
   },
