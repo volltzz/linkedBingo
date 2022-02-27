@@ -1,8 +1,10 @@
 <template>
   <div class="pt-2">
     <HeaderBar />
-    <div class="pt-3">
+    <div class="pt-3 ">
+      <div class="text-center">
       <SubTitle title="Create Loterry" />
+      </div>
       <FormCreateLoterry />
     </div>
   </div>
@@ -18,5 +20,8 @@ export default {};
 }
 .pt-3 {
   margin-top: 3rem;
+}
+.text-center{
+  text-align: center;
 }
 </style>
