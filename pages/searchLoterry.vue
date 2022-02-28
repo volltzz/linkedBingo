@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  layout: 'system'
+  layout: 'system',
+  async asyncData({store}){
+    await store.dispatch("fetchLotteries")
+  }
 }
 </script>
 
