@@ -23,7 +23,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/element-ui','@/plugins/axios'
+    '@/plugins/element-ui'
   ],  
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,31 +48,31 @@ export default {
   auth: {
     strategies: {
       local: {
+        // scheme: 'refresh',
         token: {
           property: 'token',
+          name:"X-Auth-Token",
           global: true,
-          maxAge: 1800,
+          // maxAge: 1800,
           // required: true,
-          // type: 'Bearer'
+          type:false
         },
-        refreshToken: {
-          property: 'refresh_token',
-          data: 'refresh_token',
-          maxAge: 60 * 60 * 24 * 2
-        },
-        user: {
-          property: 'user',
-          // autoFetch: true
-        },
+        // refreshToken: {
+        //   property: 'refresh_token',
+        //   data: 'refresh_token',
+        //   maxAge: 60 * 60 * 24 * 2
+        // },
         endpoints: {
           login: { url: '/login', method: 'post', propertyName: 'token' },
+          // refresh: false,
           logout: false,
           user: false
         },
-        tokenType: ''
+        // tokenType: ''
       }
     }
   },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308

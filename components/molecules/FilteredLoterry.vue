@@ -1,7 +1,6 @@
 <template>
   <NuxtLink :to="to" class="loterry">
     <span>{{ loterryID }}</span>
-    <p>Price: ${{ loterryPrice }}</p>
   </NuxtLink>
 </template>
 
@@ -13,10 +12,6 @@ export default {
       require: true,
     },
     loterryID: {
-      Type: Number,
-      require: true,
-    },
-    loterryPrice: {
       Type: Number,
       require: true,
     },

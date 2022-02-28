@@ -5,7 +5,7 @@
 <script>
 export default {
   layout: 'system',
-  middleware: ['authLogin']
+  middleware: 'authLogin'
 }
 </script>
 
