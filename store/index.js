@@ -1,10 +1,14 @@
 export const state = {
   token: null,
+  lotteries: []
 };
 
 export const mutations = {
   SET_TOKEN(state, token) {
     state.token = token;
+  },
+  SET_LOTTERIES(state, lotteries) {
+    state.lotteries = lotteries;
   },
 };
 
@@ -24,10 +28,18 @@ export const actions = {
       console.log("erro na store");
     }
   },
+  async fetchLotteries({commit}){
+    try{
+      const lotterries = await this.$axios.$post("/listdraw");
+      commit("SET_LOTTERIES", lotterries)
+    }catch(error){
+      console.log("erro na store");
+    }
+  }
 };
 
 export const getters = {
-  $getNameUser(state) {
-    return state.token;
-  },
+  $allLotteries(state){
+    return state.lotteries;
+  }
 };

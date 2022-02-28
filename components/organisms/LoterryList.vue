@@ -2,16 +2,27 @@
   <div>
     <LoterryFilter />
     <div class="grid-card">
-      <FilteredLoterry loterryID="33" loterryPrice="2" to="/issueTickets" />
-      <FilteredLoterry loterryID="55" loterryPrice="50" to="/ticketValidation" />
-      <FilteredLoterry loterryID="122" loterryPrice="44" to="/" />
-      <FilteredLoterry loterryID="67" loterryPrice="99" to="/" />
+      <FilteredLoterry
+        v-for="lottery in $allLotteries"
+        :key="lottery.draws.id"
+        :loterryID="lottery.draws.id"
+        to="/issueTickets"
+      />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    $allLotteries() {
+      return this.$store.getters.$allLotteries;
+    },
+  },
+  created() {
+    console.log(this.$store.getters.$allLotteries);
+  },
+};
 </script>
 
 <style lang="scss" scoped>

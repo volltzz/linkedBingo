@@ -8,28 +8,14 @@
           class="box-shadow form"
         >
           <el-row :gutter="20">
-            <el-col :span="12">
-              <el-form-item label="Bingo Card Value" required>
-                <el-input-number
-                  v-model="card_price"
-                  :precision="2"
-                  controls-position="right"
-                  :min="0"
-                ></el-input-number>
-              </el-form-item>
-            </el-col>
-            <el-col :span="12">
-              <el-form-item label="Date of loterry" required>
-                <el-form-item>
-                  <el-date-picker
-                    type="datetime"
-                    v-model="draw_time"
-                    placeholder="Pick a date"
-                    style="width: 100%"
-                  ></el-date-picker>
-                </el-form-item>
-              </el-form-item>
-            </el-col>
+            <el-form-item label="Bingo Card Value" required>
+              <el-input-number
+                v-model="card_price"
+                :precision="2"
+                controls-position="right"
+                :min="0"
+              ></el-input-number>
+            </el-form-item>
 
             <el-form-item label="First Prize Value" required>
               <el-input-number
@@ -38,7 +24,6 @@
                 :min="0"
               ></el-input-number>
             </el-form-item>
-
             <el-form-item label="Second Prize Value" required>
               <el-input-number
                 v-model="paytable[1]"
@@ -67,7 +52,6 @@
 export default {
   data() {
     return {
-      draw_time: "",
       card_price: "",
       paytable: [],
     };
@@ -77,7 +61,6 @@ export default {
       await this.$axios
         .$post("/newdraw", {
           draw: {
-            draw_time: this.draw_time.getTime(),
             card_price: (this.card_price * 100).toFixed(1),
             paytable: this.paytable,
           },
