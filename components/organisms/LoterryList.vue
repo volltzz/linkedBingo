@@ -7,6 +7,7 @@
         :key="lottery.draw_id"
         :loterryID="lottery.draw_id"
         :lottery="lottery.draw_id"
+        :to="to"
       />
     </div>
   </div>
@@ -17,6 +18,12 @@ export default {
   computed: {
     $allLotteries() {
       return this.$store.getters.$allLotteries;
+    },
+  },
+   props: {
+    to:{
+      Type: String,
+      require: true,
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="`/issueTickets/${loterryID}`" class="loterry">
+  <NuxtLink :to="`/${to}/${loterryID}`" class="loterry">
     <span>{{ loterryID }}</span>
   </NuxtLink>
 </template>
@@ -7,6 +7,10 @@
 <script>
 export default {
   props: {
+    to:{
+      Type: String,
+      require: true,
+    },
     loterryID: {
       Type: Number,
       require: true,
