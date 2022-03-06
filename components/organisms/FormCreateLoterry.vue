@@ -6,6 +6,7 @@
           label-position="top"
           label-width="100px"
           class="box-shadow form"
+          @submit.native.prevent
         >
           <el-row :gutter="20">
             <el-form-item label="Bingo Card Value" required>
@@ -40,7 +41,12 @@
             </el-form-item>
           </el-row>
           <el-form-item class="button">
-            <el-button type="primary" @click="addLoterry">Create</el-button>
+            <el-button
+              type="primary"
+              @click="addLoterry"
+              :loading="loadingButton"
+              >Create</el-button
+            >
           </el-form-item>
         </el-form>
       </el-col>
@@ -54,23 +60,40 @@ export default {
     return {
       card_price: "",
       paytable: [],
+      loadingButton: false,
     };
   },
   methods: {
+    successText() {
+      this.$notify({
+        title: "Sucesso",
+        message: "Loterry criada com sucesso",
+        type: "success",
+      });
+    },
+    errorText() {
+        this.$notify.error({
+          title: 'Error',
+          message: 'Erro ao criar a Loterry'
+        });
+      },
     async addLoterry() {
-      await this.$axios
-        .$post("/newdraw", {
+      this.loadingButton = true;
+
+      try {
+        await this.$axios.$post("/newdraw", {
           draw: {
             card_price: (this.card_price * 100).toFixed(1),
             paytable: this.paytable,
           },
-        })
-        .then(function (response) {
-          console.log("deu certo");
-        })
-        .catch(function (error) {
-          console.log("deu ruim");
         });
+        this.successText();
+        console.log("deu certo");
+      } catch (error) {
+        this.errorText();
+        console.log("deu ruim");
+      }
+      this.loadingButton = false;
     },
   },
 };
