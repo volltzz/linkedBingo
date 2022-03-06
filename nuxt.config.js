@@ -24,7 +24,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/element-ui'
-  ],  
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [{ path: '@/components', pathPrefix: false }],
@@ -42,20 +42,31 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    'cookie-universal-nuxt',
   ],
+  router: {
+    middleware: [
+      'auth'
+    ]
+  },
 
   auth: {
+    // redirect: {
+    //   login: "/login",
+    //   logout: "/", 
+    //   home: "/"  
+    // },
     strategies: {
       local: {
         // scheme: 'refresh',
         token: {
           property: 'token',
-          name:"X-Auth-Token",
+          name: "X-Auth-Token",
           global: true,
           // maxAge: 1800,
           // required: true,
-          type:false
+          type: false
         },
         // refreshToken: {
         //   property: 'refresh_token',
@@ -68,6 +79,7 @@ export default {
           logout: false,
           user: false
         },
+
         // tokenType: ''
       }
     }
@@ -78,7 +90,7 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     browserBaseUrl: 'http://3.145.195.66:8040',
 
-   
+
 
   },
 

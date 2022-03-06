@@ -1,12 +1,12 @@
 <template>
   <div>
-      <CreateLoterryTemplate />
+    <CreateLoterryTemplate />
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'system'
-}
+  layout: "system",
+};
 </script>
 
