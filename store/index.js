@@ -1,7 +1,9 @@
 export const state = {
   token: null,
   lotteries: [],
-  csv: null
+  csv: null,
+  loginButton: false,
+  errorText: false
 };
 
 export const mutations = {
@@ -11,6 +13,12 @@ export const mutations = {
   SET_LOTTERIES(state, lotteries) {
     state.lotteries = lotteries;
   },
+  SET_LOGIN_BUTTON(state, loginButton) {
+    state.loginButton = loginButton;
+  },
+  SET_ERROR_TEXT(state, errorText) {
+    state.errorText = errorText;
+  },
   SET_CSV(state, csv) {
     console.log(csv);
     state.csv = csv;
@@ -18,19 +26,27 @@ export const mutations = {
 };
 
 export const actions = {
-  userAuth({ commit }, login) {
+ async userAuth({ commit }, login) {
     try {
-      const token = this.$auth.loginWith("local", {
+      const loginButton = true
+      const errorText = false
+      commit("SET_LOGIN_BUTTON", loginButton);
+      commit("SET_ERROR_TEXT", errorText);
+     const token = await this.$auth.loginWith("local", {
         data: {
           user: login.user,
           pass: login.pass,
           device_id: login.device_id,
           client_version: login.client_version,
-        },
+        },  
       });
       commit("SET_TOKEN", token);
     } catch (error) {
       console.log("Erro ao enviar login na store");
+      const loginButton = false
+      const errorText = true
+      commit("SET_LOGIN_BUTTON", loginButton);
+      commit("SET_ERROR_TEXT", errorText);
     }
   },
 
@@ -63,5 +79,11 @@ export const getters = {
   },
   $csvGenerated(state){
     return state.csv;
+  },
+  $buttonState(state){
+    return state.loginButton;
+  },
+  $errorText(state){
+    return state.errorText;
   }
 };
