@@ -3,13 +3,20 @@
     <HeaderBar />
     <div class="pt-3">
       <SubTitle title="Lotteries" />
-      <LoterryList />
+      <LoterryList :to="to" />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+   props: {
+    to:{
+      Type: String,
+      require: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

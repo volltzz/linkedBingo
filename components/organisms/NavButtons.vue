@@ -1,8 +1,8 @@
 <template>
     <div class="nav-buttons">
         <NavButton to="/createLoterry" icon="el-icon-plus" title="Create Lottery" color="primary"/>
-        <NavButton to="/searchLoterry" icon="el-icon-download" title="Ticket Emission" color="danger"/>
-        <NavButton to="/searchLoterry" icon="el-icon-check" title="Ticket Validation" color="success"/>
+        <NavButton to="/issueTickets" icon="el-icon-download" title="Ticket Emission" color="danger"/>
+        <NavButton to="/ticketValidation" icon="el-icon-check" title="Ticket Validation" color="success"/>
     </div>
 </template>
 

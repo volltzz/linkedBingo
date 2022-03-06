@@ -3,10 +3,11 @@
     <LoterryFilter />
     <div class="grid-card">
       <FilteredLoterry
-        v-for="lottery in $allLotteries"
-        :key="lottery.draws.id"
-        :loterryID="lottery.draws.id"
-        to="/issueTickets"
+        v-for="lottery in $allLotteries.draws"
+        :key="lottery.draw_id"
+        :loterryID="lottery.draw_id"
+        :lottery="lottery.draw_id"
+        :to="to"
       />
     </div>
   </div>
@@ -19,8 +20,11 @@ export default {
       return this.$store.getters.$allLotteries;
     },
   },
-  created() {
-    console.log(this.$store.getters.$allLotteries);
+   props: {
+    to:{
+      Type: String,
+      require: true,
+    },
   },
 };
 </script>
