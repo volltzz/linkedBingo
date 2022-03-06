@@ -7,9 +7,6 @@ export const state = {
 };
 
 export const mutations = {
-  SET_TOKEN(state, token) {
-    state.token = token;
-  },
   SET_LOTTERIES(state, lotteries) {
     state.lotteries = lotteries;
   },
@@ -26,21 +23,21 @@ export const mutations = {
 };
 
 export const actions = {
- async userAuth({ commit }, login) {
+  async userAuth({ commit }, login) {
     try {
       const loginButton = true
       const errorText = false
       commit("SET_LOGIN_BUTTON", loginButton);
       commit("SET_ERROR_TEXT", errorText);
-     const token = await this.$auth.loginWith("local", {
+      await this.$auth.loginWith("local", {
         data: {
           user: login.user,
           pass: login.pass,
           device_id: login.device_id,
           client_version: login.client_version,
-        },  
+        },
       });
-      commit("SET_TOKEN", token);
+
     } catch (error) {
       console.log("Erro ao enviar login na store");
       const loginButton = false
@@ -49,12 +46,14 @@ export const actions = {
       commit("SET_ERROR_TEXT", errorText);
     }
   },
-
-  async fetchLotteries({commit}){
-    try{
+  userLogout() {
+    this.$auth.logout()
+  },
+  async fetchLotteries({ commit }) {
+    try {
       const lotterries = await this.$axios.$post("/listdraw");
       commit("SET_LOTTERIES", lotterries)
-    }catch(error){
+    } catch (error) {
       console.log("Erro ao carregar lista na store");
     }
   },
@@ -74,16 +73,17 @@ export const actions = {
 };
 
 export const getters = {
-  $allLotteries(state){
+
+  $allLotteries(state) {
     return state.lotteries;
   },
-  $csvGenerated(state){
+  $csvGenerated(state) {
     return state.csv;
   },
-  $buttonState(state){
+  $buttonState(state) {
     return state.loginButton;
   },
-  $errorText(state){
+  $errorText(state) {
     return state.errorText;
   }
 };

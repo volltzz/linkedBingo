@@ -18,11 +18,11 @@
               <i class="el-icon-s-home"></i>
             </el-menu-item>
           </NuxtLink>
-          <NuxtLink to="/">
+          <div class="logout" @click="logout">
             <el-menu-item index="2">
               <i class="el-icon-circle-close"></i>
             </el-menu-item>
-          </NuxtLink>
+          </div>
         </div>
       </el-menu>
     </el-aside>
@@ -35,6 +35,11 @@ export default {
     return {
       isCollapse: false,
     };
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("userLogout");
+    },
   },
 };
 </script>

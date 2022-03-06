@@ -1,12 +1,11 @@
 <template>
-  <HomeTemplate/>
+  <HomeTemplate />
 </template>
 
 <script>
 export default {
-  layout: 'system',
-  middleware: 'authLogin'
-}
+  layout: "system",
+};
 </script>
 
 

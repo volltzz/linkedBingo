@@ -1,12 +1,12 @@
 <template>
   <div>
-      <IssueTicketsTemplate />
+    <IssueTicketsTemplate />
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'system',
-}
+  layout: "system",
+};
 </script>
 
