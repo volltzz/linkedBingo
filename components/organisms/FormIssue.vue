@@ -72,7 +72,6 @@ export default {
       options: options,
     };
   },
-
   methods: {
     issueTicket() {
       try {

@@ -1,7 +1,7 @@
 <template>
   <div class="header-bar">
     <MainTitle title="LinkedBingo" />
-    <UserInfo userName="" userPermission="admin" />
+    <UserInfo userName="" userPermission="Caliente" />
   </div>
 </template>
 
