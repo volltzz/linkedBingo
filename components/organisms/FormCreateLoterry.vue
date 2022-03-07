@@ -88,10 +88,8 @@ export default {
           },
         });
         this.successText();
-        console.log("deu certo");
       } catch (error) {
         this.errorText();
-        console.log("deu ruim");
       }
       this.loadingButton = false;
     },
