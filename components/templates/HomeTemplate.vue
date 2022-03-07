@@ -3,9 +3,9 @@
     <HeaderBar />
     <div class="nav-buttons">
       <NavButtons />
-      <div class="dash-board">
+      <!-- <div class="dash-board">
         <DashBoards />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
