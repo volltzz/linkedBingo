@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-row :gutter="20">
-      <el-col :span="12">
+    <el-row :gutter="20" type="flex" justify="center">
+      <el-col :span="16">
         <el-form
           label-position="top"
           label-width="100px"
@@ -27,12 +27,17 @@
             </el-select>
           </el-form-item>
 
-          <el-button type="primary" @click="issueTicket"
-            >Generate tickets</el-button
-          >
+          <div class="center">
+            <el-button
+              type="primary"
+              @click="issueTicket"
+              :loading="$globalButton"
+              >Generate tickets</el-button
+            >
+          </div>
         </el-form>
       </el-col>
-      <el-col :span="12">
+      <!-- <el-col :span="12">
         <div class="box-shadow file-box">
           <div v-if="true">
             <el-empty description="No file generated"></el-empty>
@@ -52,7 +57,7 @@
             </div>
           </div>
         </div>
-      </el-col>
+      </el-col> -->
     </el-row>
   </div>
 </template>
@@ -72,19 +77,44 @@ export default {
       options: options,
     };
   },
+  computed: {
+    $globalButton() {
+      return this.$store.getters.$globalButton;
+    },
+  },
   methods: {
     issueTicket() {
-      try {
-        this.$store.dispatch("issueTicket", this.issue);
-      } catch (error) {
-        console.log("erro dispatch issue");
-      }
+      this.$store
+        .dispatch("issueTicket", this.issue)
+        .then(() => {
+          this.successText();
+        })
+        .catch(() => {
+          this.errorText();
+        });
+    },
+
+    successText() {
+      this.$notify({
+        title: "Sucesso",
+        message: "Arquivo gerado com sucesso",
+        type: "success",
+      });
+    },
+    errorText(errorText) {
+      this.$notify.error({
+        title: "Error",
+        message: "Erro ao gerar o arquivo",
+      });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.center {
+  text-align: center;
+}
 .file {
   display: grid;
   grid-template-columns: auto auto;

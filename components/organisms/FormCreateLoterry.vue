@@ -97,7 +97,11 @@ export default {
           draw: {
             draw_time: this.draw_time.getTime(),
             card_price: (this.card_price * 100).toFixed(1),
-            paytable: this.paytable,
+            paytable: [
+              (this.paytable[0] * 100).toFixed(1),
+              (this.paytable[1] * 100).toFixed(1),
+              (this.paytable[2] * 100).toFixed(1),
+            ],
           },
         })
         .then(() => {
