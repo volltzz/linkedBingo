@@ -9,15 +9,26 @@
           @submit.native.prevent
         >
           <el-row :gutter="20">
-            <el-form-item label="Bingo Card Value" required>
-              <el-input-number
-                v-model="card_price"
-                :precision="2"
-                controls-position="right"
-                :min="0"
-              ></el-input-number>
-            </el-form-item>
-
+            <el-col :span="12">
+              <el-form-item label="Bingo Card Value" required>
+                <el-input-number
+                  v-model="card_price"
+                  :precision="2"
+                  controls-position="right"
+                  :min="0"
+                ></el-input-number>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="Date" required>
+                <el-date-picker
+                  v-model="draw_time"
+                  type="datetime"
+                  placeholder="Select date and time"
+                >
+                </el-date-picker>
+              </el-form-item>
+            </el-col>
             <el-form-item label="First Prize Value" required>
               <el-input-number
                 v-model="paytable[0]"
@@ -58,6 +69,7 @@
 export default {
   data() {
     return {
+      draw_time: "",
       card_price: "",
       paytable: [],
       loadingButton: false,
@@ -71,26 +83,30 @@ export default {
         type: "success",
       });
     },
-    errorText() {
-        this.$notify.error({
-          title: 'Error',
-          message: 'Erro ao criar a Loterry'
-        });
-      },
+    errorText(errorText) {
+      this.$notify.error({
+        title: "Error",
+        message: errorText,
+      });
+    },
     async addLoterry() {
       this.loadingButton = true;
 
-      try {
-        await this.$axios.$post("/newdraw", {
+      await this.$axios
+        .$post("/newdraw", {
           draw: {
+            draw_time: this.draw_time.getTime(),
             card_price: (this.card_price * 100).toFixed(1),
             paytable: this.paytable,
           },
+        })
+        .then(() => {
+          this.successText();
+        })
+        .catch((error) => {
+          this.errorText(error.response.data.message);
         });
-        this.successText();
-      } catch (error) {
-        this.errorText();
-      }
+
       this.loadingButton = false;
     },
   },
@@ -109,6 +125,10 @@ export default {
   text-align: center;
 }
 .el-input-number {
+  width: 100%;
+}
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
   width: 100%;
 }
 </style>
