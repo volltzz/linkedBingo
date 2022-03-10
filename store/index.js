@@ -3,6 +3,7 @@ export const state = {
   lotteries: [],
   csv: null,
   loginButton: false,
+  buttonState: false,
   errorText: false,
 };
 
@@ -13,9 +14,13 @@ export const mutations = {
   SET_LOGIN_BUTTON(state, loginButton) {
     state.loginButton = loginButton;
   },
+  SET_BUTTON_STATE(state, buttonState) {
+    state.buttonState = buttonState;
+  },
   SET_ERROR_TEXT(state, errorText) {
     state.errorText = errorText;
   },
+
   SET_CSV(state, csv) {
     console.log(csv);
     state.csv = csv;
@@ -43,10 +48,14 @@ export const actions = {
       const errorText = true;
       commit("SET_LOGIN_BUTTON", loginButton);
       commit("SET_ERROR_TEXT", errorText);
+    } finally{
+      const loginButton = false;
+      commit("SET_LOGIN_BUTTON", loginButton);
     }
   },
   userLogout() {
     this.$auth.logout();
+    this.$router.push("/login")
   },
   async fetchLotteries({ commit }) {
     try {
@@ -59,6 +68,8 @@ export const actions = {
 
   async issueTicket({ commit }, issue) {
     try {
+      const buttonState = true;
+      commit("SET_BUTTON_STATE", buttonState);
       const csv = await this.$axios.$post("/issue_manual_ticket", {
         quantity: issue.quantity,
         draw_id: issue.draw_id,
@@ -66,7 +77,12 @@ export const actions = {
       });
       commit("SET_CSV", csv);
     } catch (error) {
+      const buttonState = false;
+      commit("SET_BUTTON_STATE", buttonState);
       console.log("Erro ao carregar csv na store");
+    } finally{
+      const buttonState = false;
+      commit("SET_BUTTON_STATE", buttonState);
     }
   },
 };
@@ -80,6 +96,9 @@ export const getters = {
   },
   $buttonState(state) {
     return state.loginButton;
+  },
+  $globalButton(state) {
+    return state.buttonState;
   },
   $errorText(state) {
     return state.errorText;
