@@ -2,7 +2,7 @@
   <div class="pt-2">
     <HeaderBar />
     <div class="pt-3">
-      <SubTitle title="Issue Tickets " />
+      <SubTitle :title="drawID" />
       <FormIssue />
     </div>
   </div>
@@ -10,7 +10,11 @@
 
 <script>
 export default {
-
+  computed: {
+    drawID() {
+      return `Issue Ticket #${this.$route.params.id}`;
+    },
+  },
 };
 </script>
 
