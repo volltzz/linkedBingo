@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     issue(row) {
-      this.$router.push(`/issueTickets/${row}`);
+      this.$router.push(`/${this.to}/${row}`);
     },
   },
   props: {
