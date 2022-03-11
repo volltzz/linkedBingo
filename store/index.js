@@ -1,6 +1,7 @@
 export const state = {
   token: null,
   lotteries: [],
+  tickets: [],
   csv: null,
   loginButton: false,
   buttonState: false,
@@ -10,7 +11,10 @@ export const state = {
 export const mutations = {
   SET_LOTTERIES(state, lotteries) {
     state.lotteries = lotteries;
-  },  
+  },
+  SET_TICKETS(state, tickets) {
+    state.tickets = tickets;
+  },
   SET_LOGIN_BUTTON(state, loginButton) {
     state.loginButton = loginButton;
   },
@@ -48,7 +52,7 @@ export const actions = {
       const errorText = true;
       commit("SET_LOGIN_BUTTON", loginButton);
       commit("SET_ERROR_TEXT", errorText);
-    } finally{
+    } finally {
       const loginButton = false;
       commit("SET_LOGIN_BUTTON", loginButton);
     }
@@ -63,6 +67,15 @@ export const actions = {
       commit("SET_LOTTERIES", lotterries);
     } catch (error) {
       console.log("Erro ao carregar lista na store");
+    }
+  },
+  async fetchTickets({ commit }, draw_id) {
+    try {
+      const tickets = await this.$axios.$post("/draw/getTickets", { draw_id: draw_id });
+      commit("SET_TICKETS", tickets);
+
+    } catch (error) {
+      console.log("Erro ao carregar lista Tickets na store");
     }
   },
 
@@ -80,7 +93,7 @@ export const actions = {
       const buttonState = false;
       commit("SET_BUTTON_STATE", buttonState);
       console.log("Erro ao carregar csv na store");
-    } finally{
+    } finally {
       const buttonState = false;
       commit("SET_BUTTON_STATE", buttonState);
     }
@@ -88,6 +101,9 @@ export const actions = {
 };
 
 export const getters = {
+  $allTickets(state) {
+    return state.tickets
+  },
   $allLotteries(state) {
     return state.lotteries;
   },
