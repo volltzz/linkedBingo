@@ -22,6 +22,7 @@
     color: white;
     border-radius: 100%;
     cursor: pointer;
+    padding: 5px;
 }
 
 </style>
