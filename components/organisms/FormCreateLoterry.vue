@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row :gutter="20" type="flex" justify="center">
-      <el-col :span="15">
+      <el-col :span="20">
         <el-form
           label-position="top"
           label-width="100px"

@@ -1,7 +1,7 @@
 <template>
   <div class="forms">
     <div class="form login box-shadow">
-      <span class="title">Login</span>
+      <span class="title">Login LinkedBingo</span>
 
       <form @submit.prevent="userLogin">
         <el-alert v-if="$errorText" title="Login ou senha incorretos" type="error" effect="dark"> </el-alert>
@@ -23,7 +23,7 @@
 
         <div class="input-field button">
           <el-button type="primary" :loading="$buttonState" native-type="submit"
-            >Login</el-button
+            >Login </el-button
           >
         </div>
 
@@ -74,7 +74,7 @@ export default {
       },
     };
   },
-  methods: {  
+  methods: {
     async userLogin() {
       await this.$store.dispatch("userAuth", this.login);
     },

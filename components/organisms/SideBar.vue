@@ -1,6 +1,6 @@
 <template>
   <div class="body3" ref="sideBar2">
-    <nav class="sidebar close" ref="nav2">
+    <nav class="sidebar " ref="nav2">
       <header>
         <div class="image-text">
           <span class="image">
@@ -55,7 +55,7 @@ export default {
   methods: {
     open() {
       this.$alert("Deseja realemte sair?", "Logout", {
-        confirmButtonText: "Yes",
+        confirmButtonText: "Sim",
         callback: (action) => {
           if(action == "confirm"){
             this.logout()

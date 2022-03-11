@@ -7,7 +7,7 @@
       "
       :default-sort="{ prop: 'ticketId', order: 'descending' }"
       :row-class-name="tableRowClassName"
-      style="width: 100%"
+      style="width: 100%; border-radius: 1rem"
     >
       <el-table-column label="ticket" prop="ticketId" sortable>
       </el-table-column>
