@@ -9,7 +9,7 @@ export const state = {
 export const mutations = {
   SET_LOTTERIES(state, lotteries) {
     state.lotteries = lotteries;
-  },  
+  },
   SET_LOGIN_BUTTON(state, loginButton) {
     state.loginButton = loginButton;
   },
@@ -72,6 +72,20 @@ export const actions = {
 };
 
 export const getters = {
+  $filterAscend(state) {
+    const newLoterries = JSON.parse(JSON.stringify(state.lotteries))
+
+    return newLoterries.draws.sort((x, y) => {
+      return y.draw_id - x.draw_id;
+    });
+  },
+  $filterDesc(state) {
+    const newLoterries = JSON.parse(JSON.stringify(state.lotteries))
+
+    return newLoterries.draws.sort((x, y) => {
+      return x.draw_id - y.draw_id;
+    });
+  },
   $allLotteries(state) {
     return state.lotteries;
   },
