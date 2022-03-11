@@ -1,31 +1,53 @@
 <template>
-  <el-table
-    :data="tableData.filter((data) => !search || data.ticketId == search)"
-    :default-sort="{ prop: 'ticketId', order: 'descending' }"
-    :row-class-name="tableRowClassName"
-    style="width: 100%"
-  >
-    <el-table-column label="ticket" prop="ticketId" sortable> </el-table-column>
-    <el-table-column label="seller" prop="seller_id" sortable>
-    </el-table-column>
-    <el-table-column align="right">
-      <!-- eslint-disable-next-line -->
-      <template slot="header" slot-scope="scope">
-        <el-input v-model="search" size="mini" placeholder="Type to search" />
-      </template>
-      <template slot-scope="scope">
-        <el-button size="mini" @click="approveTicket(scope.row.ticketId)"
-          >Approve</el-button
-        >
-        <el-button
-          size="mini"
-          type="danger"
-          @click="invalidateTicket(scope.row.ticketId)"
-          >Invalidate</el-button
-        >
-      </template>
-    </el-table-column>
-  </el-table>
+  <div>
+    <el-table
+      v-loading="loadingButton"
+      :data="
+        pagedTableData.filter((data) => !search || data.ticketId == search)
+      "
+      :default-sort="{ prop: 'ticketId', order: 'descending' }"
+      :row-class-name="tableRowClassName"
+      style="width: 100%"
+    >
+      <el-table-column label="ticket" prop="ticketId" sortable>
+      </el-table-column>
+      <el-table-column label="seller" prop="seller_id" sortable>
+      </el-table-column>
+
+      <el-table-column align="right">
+        <!-- eslint-disable-next-line -->
+        <template slot="header" slot-scope="scope">
+          <el-input v-model="search" size="mini" placeholder="Type to search" />
+        </template>
+        <template slot-scope="scope">
+          <el-row :gutter="10">
+            <el-col :span="12">
+              <el-button size="mini" @click="approveTicket(scope.row.ticketId)"
+                >Approve</el-button
+              >
+            </el-col>
+            <el-col :span="12">
+              <el-button
+                size="mini"
+                type="danger"
+                @click="invalidateTicket(scope.row.ticketId)"
+                >Invalidate</el-button
+              >
+            </el-col>
+          </el-row>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div class="paginacao">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="this.tableData.length"
+        @current-change="setPage"
+      >
+      </el-pagination>
+    </div>
+  </div>
 </template>
 
 
@@ -41,7 +63,9 @@ export default {
       }
       return "";
     },
+    
     async approveTicket(ticketId) {
+      this.loadingButton = true;
       await this.$axios
         .$post("/ticket/validate_tickets", {
           validate_tickets: [ticketId],
@@ -50,13 +74,15 @@ export default {
         })
         .then(() => {
           window.location.reload();
-          console.log("deu certo");
+          this.successText();
         })
         .catch(() => {
-          console.log("deu merda");
+          this.errorText();
         });
+      this.loadingButton = false;
     },
     async invalidateTicket(ticketId) {
+      this.loadingButton = true;
       await this.$axios
         .$post("/ticket/validate_tickets", {
           validate_tickets: null,
@@ -64,23 +90,49 @@ export default {
           draw_id: this.$route.params.id,
         })
         .then(() => {
-          this.tableRowClassName();
-          console.log("deu certo");
+          window.location.reload();
+          this.successText();
         })
         .catch(() => {
-          console.log("deu merda");
+          this.errorText();
         });
+      this.loadingButton = false;
     },
+    successText() {
+      this.$notify({
+        title: "Sucesso",
+        message: "Alterado com sucesso",
+        type: "success",
+      });
+    },
+    errorText() {
+      this.$notify.error({
+        title: "Error",
+      });
+    },
+    setPage(valu) {
+      this.page = valu;
+    },
+  
   },
   data() {
     return {
       tableData: this.$store.getters.$allTickets,
       search: "",
+      page: 1,
+      pageSize: 12,
+      loadingButton: false,
     };
   },
   computed: {
     $allTickets() {
       return this.$store.getters.$allTickets;
+    },
+    pagedTableData() {
+      return this.tableData.slice(
+        this.pageSize * this.page - this.pageSize,
+        this.pageSize * this.page
+      );
     },
   },
 };
@@ -96,5 +148,10 @@ export default {
 }
 .el-table .danger-row {
   background: #fde2e2;
+}
+.paginacao {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 </style>
