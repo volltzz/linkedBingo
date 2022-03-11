@@ -37,7 +37,7 @@
               size="mini"
               type="success"
               @click="issue(scope.row.draw_id)"
-              >Issue</el-button
+              >{{BtnText}}</el-button
             >
           </template>
         </el-table-column>
@@ -73,6 +73,10 @@ export default {
   },
   props: {
     to: {
+      Type: String,
+      require: true,
+    },
+     BtnText:{
       Type: String,
       require: true,
     },

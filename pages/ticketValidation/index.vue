@@ -1,6 +1,6 @@
 <template>
   <div>
-      <SearchLoterryTemplate to="ticketValidation"/>
+      <SearchLoterryTemplate to="ticketValidation" BtnText="validate"/>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-      <SearchLoterryTemplate to="issueTickets"/>
+      <SearchLoterryTemplate to="issueTickets" BtnText="issue"/>
   </div>
 </template>
 
