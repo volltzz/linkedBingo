@@ -1,6 +1,6 @@
 <template>
   <div class="body3" ref="sideBar2">
-    <nav class="sidebar " ref="nav2">
+    <nav class="sidebar close" ref="nav2">
       <header>
         <div class="image-text">
           <span class="image">
@@ -77,6 +77,7 @@ export default {
       toggle.addEventListener("click", () => {
         sidebar.classList.toggle("close");
       });
+
     },
   },
 };

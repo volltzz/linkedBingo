@@ -16,7 +16,7 @@ export default {};
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 2rem;
-  height: 100vh;
+  height: 100%;
   background-color: #e4e9f775;
 }
 </style>
