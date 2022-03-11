@@ -108,7 +108,7 @@ export const getters = {
     return state.lotteries;
   },
   $csvGenerated(state) {
-    return state.csv;
+    return state.csv.csv_content;
   },
   $buttonState(state) {
     return state.loginButton;

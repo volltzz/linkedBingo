@@ -88,10 +88,21 @@ export default {
         .dispatch("issueTicket", this.issue)
         .then(() => {
           this.successText();
+          this.downloadCsv();
         })
         .catch(() => {
           this.errorText();
         });
+    },
+
+    downloadCsv() {
+      var hiddenElement = document.createElement("a");
+      hiddenElement.href =
+        "data:text/csv;charset=utf-8," +
+        encodeURI(this.$store.getters.$csvGenerated);
+      hiddenElement.target = "_blank";
+      hiddenElement.download = "tickets.csv";
+      hiddenElement.click();
     },
 
     successText() {
