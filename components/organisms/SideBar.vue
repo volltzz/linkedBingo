@@ -72,7 +72,6 @@ export default {
         sidebar = this.$refs.nav2,
         toggle = this.$refs.toggle2;
 
-      console.log(body);
 
       toggle.addEventListener("click", () => {
         sidebar.classList.toggle("close");

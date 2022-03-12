@@ -1,10 +1,10 @@
 <template>
   <div class="user-info box-shadow">
     <el-avatar icon="el-icon-user-solid" />
-    <div>
+    <!-- <div>
       <h3>{{ userName }}</h3>
       <p>{{ userPermission }}</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -29,8 +29,8 @@ export default {
   border-radius: 1rem;
   background: white;
   display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr;
+  // grid-gap: 1rem;
+  grid-template-columns: 1fr;
   align-items: center;
 }
 </style>

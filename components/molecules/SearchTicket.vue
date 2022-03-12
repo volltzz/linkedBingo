@@ -63,7 +63,7 @@ export default {
       }
       return "";
     },
-
+    
     async approveTicket(ticketId) {
       this.loadingButton = true;
       await this.$axios
@@ -113,13 +113,14 @@ export default {
     setPage(valu) {
       this.page = valu;
     },
+  
   },
   data() {
     return {
       tableData: this.$store.getters.$allTickets,
       search: "",
       page: 1,
-      pageSize: 12,
+      pageSize: 10,
       loadingButton: false,
     };
   },
