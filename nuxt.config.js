@@ -34,6 +34,8 @@ export default {
     scss: ["@/components/bosons/*.scss"],
   },
 
+  target: 'static',
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
