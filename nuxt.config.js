@@ -22,7 +22,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["@/plugins/element-ui"],
+  plugins: ["@/plugins/element-ui", ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [{ path: "@/components", pathPrefix: false }],
@@ -80,9 +80,9 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308 
-    browserBaseUrl: process.env.API_URL,
-    baseUrl: process.env.API_URL,
+    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308 http://3.145.195.66:8040
+    browserBaseUrl: "http://3.145.195.66:8040",
+    baseUrl: "http://3.145.195.66:8040",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
