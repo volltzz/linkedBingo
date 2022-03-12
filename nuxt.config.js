@@ -34,11 +34,6 @@ export default {
     scss: ["@/components/bosons/*.scss"],
   },
 
-  target: 'static',
-  router: {
-    base: '/linkedBingo/'
-  },
-
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
