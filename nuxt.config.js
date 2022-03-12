@@ -36,7 +36,7 @@ export default {
 
   target: 'static',
   router: {
-    base: '/linkedbingo/'
+    base: '/linkedBingo/'
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
