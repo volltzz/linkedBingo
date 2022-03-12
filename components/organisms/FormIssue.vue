@@ -101,7 +101,7 @@ export default {
         "data:text/csv;charset=utf-8," +
         encodeURI(this.$store.getters.$csvGenerated);
       hiddenElement.target = "_blank";
-      hiddenElement.download = "tickets.csv";
+      hiddenElement.download = `tickets-${this.$route.params.id}.csv`;
       hiddenElement.click();
     },
 

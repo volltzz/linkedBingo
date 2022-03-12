@@ -117,7 +117,7 @@ export default {
       }
       return "";
     },
-
+    
     async approveTicket(ticketId) {
       this.loadingButton = true;
       await this.$axios
@@ -166,6 +166,27 @@ export default {
     },
     setPage(valu) {
       this.page = valu;
+    },
+  
+  },
+  data() {
+    return {
+      tableData: this.$store.getters.$allTickets,
+      search: "",
+      page: 1,
+      pageSize: 10,
+      loadingButton: false,
+    };
+  },
+  computed: {
+    $allTickets() {
+      return this.$store.getters.$allTickets;
+    },
+    pagedTableData() {
+      return this.tableData.slice(
+        this.pageSize * this.page - this.pageSize,
+        this.pageSize * this.page
+      );
     },
   },
 };
