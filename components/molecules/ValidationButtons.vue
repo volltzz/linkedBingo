@@ -16,11 +16,14 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-button, [type="button"], [type="reset"], [type="submit"]{
-    width: 100%;
-    margin: 1rem 0;
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  width: 100%;
+  margin: 1rem 0;
 }
-.padding{
-    padding: 1rem;
+.padding {
+  padding: 1rem;
 }
 </style>
