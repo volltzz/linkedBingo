@@ -1,5 +1,23 @@
 <template>
   <div>
+    <div class="input-field">
+      <input
+        type="number"
+        placeholder="intervalo1"
+        v-model="lowerInterval"
+        required
+      />
+      <input
+        type="number"
+        placeholder="intervalo2"
+        v-model="BigInterval"
+        required
+      />
+      <el-button @click="getIntervalId(lowerInterval, BigInterval)"
+        >Filtrar</el-button
+      >
+      <!-- <i class="uil uil-eye-slash showHidePw"></i> -->
+    </div>
     <el-table
       v-loading="loadingButton"
       :data="
@@ -13,7 +31,6 @@
       </el-table-column>
       <el-table-column label="seller" prop="seller_id" sortable>
       </el-table-column>
-
       <el-table-column align="right">
         <!-- eslint-disable-next-line -->
         <template slot="header" slot-scope="scope">
@@ -54,7 +71,44 @@
 
 <script>
 export default {
+  data() {
+    return {
+      tableData: this.$store.getters.$allTickets,
+      search: "",
+      lowerInterval: "",
+      BigInterval: "",
+      page: 1,
+      pageSize: 12,
+      loadingButton: false,
+    };
+  },
+  computed: {
+    $allTickets() {
+      return this.$store.getters.$allTickets;
+    },
+    pagedTableData() {
+      return this.tableData.slice(
+        this.pageSize * this.page - this.pageSize,
+        this.pageSize * this.page
+      );
+    },
+  },
   methods: {
+    getIntervalId(lowerInterval, BigInterval) {
+      const smallInteterval =
+        lowerInterval < BigInterval ? lowerInterval : BigInterval;
+      const bigInteterval =
+        lowerInterval > BigInterval ? lowerInterval : BigInterval;
+      const newTickets = this.$store.getters.$allTickets;
+      const ticketsInterval = newTickets.filter(
+        ({ ticketId }) =>
+          ticketId >= smallInteterval && ticketId <= bigInteterval
+      );
+
+      const arrayId = ticketsInterval.map((id) => {
+        return id.ticketId;
+      });
+    },
     tableRowClassName({ row, rowIndex }) {
       if (row.state === 0) {
         return "success-row";
