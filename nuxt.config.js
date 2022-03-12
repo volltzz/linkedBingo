@@ -80,9 +80,9 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    browserBaseUrl: "http://3.145.195.66:8040",
-    baseUrl: "http://3.145.195.66:8040",
+    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308 
+    browserBaseUrl: process.env.API_URL,
+    baseUrl: process.env.API_URL,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
