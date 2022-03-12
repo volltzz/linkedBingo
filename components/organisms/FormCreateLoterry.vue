@@ -105,10 +105,16 @@ export default {
           },
         })
         .then(() => {
-          this.successText();
+          this.successText()
+          this.draw_time = "",
+          this.card_price = "",
+          this.paytable = []
         })
         .catch((error) => {
           this.errorText(error.response.data.message);
+          this.draw_time = "",
+          this.card_price = "",
+          this.paytable = []
         });
 
       this.loadingButton = false;

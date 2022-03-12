@@ -1,11 +1,11 @@
 <template>
-  <div class="pt-2">
-    <HeaderBar />
-    <div class="pt-3">
-      <SubTitle title="Ticket Validation" />
-      <TicketValidation />
+    <div class="pt-2">
+      <HeaderBar />
+      <div class="pt-3">
+        <SubTitle title="Ticket Validation" />
+        <TicketValidation />
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -13,6 +13,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+
 .pt-2 {
   margin-top: 2rem;
 }

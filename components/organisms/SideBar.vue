@@ -18,13 +18,13 @@
 
       <div class="menu-bar">
         <div class="menu">
-          <li class="search-box">
+          <li class="search-box home-li">
             <NuxtLink to="/">
               <i class="el-icon-s-home icon"></i>
               <span class="text nav-text">Home</span>
             </NuxtLink>
           </li>
-          <li class="search-box" @click="open">
+          <li class="search-box logout-li" @click="open">
             <i class="el-icon-error icon"></i>
             <span class="text nav-text">Sair</span>
           </li>
@@ -57,8 +57,8 @@ export default {
       this.$alert("Deseja realemte sair?", "Logout", {
         confirmButtonText: "Sim",
         callback: (action) => {
-          if(action == "confirm"){
-            this.logout()
+          if (action == "confirm") {
+            this.logout();
           }
         },
       });
@@ -72,11 +72,9 @@ export default {
         sidebar = this.$refs.nav2,
         toggle = this.$refs.toggle2;
 
-
       toggle.addEventListener("click", () => {
         sidebar.classList.toggle("close");
       });
-
     },
   },
 };
@@ -285,8 +283,17 @@ header .image-text .profession {
   transition: all 0.3s ease;
 }
 
-.sidebar li a:hover {
-  background-color: #695cfe;
+.sidebar .home-li:hover {
+  background-color: #67c23a;
+}
+.sidebar .logout-li:hover {
+  background-color: #f56c6c;
+  .text  {
+    color: white !important;
+  }
+  i{
+    color: white !important;
+  }
 }
 
 .sidebar li a:hover .icon,

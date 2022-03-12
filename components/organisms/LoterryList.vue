@@ -2,8 +2,8 @@
   <div>
     <el-row :gutter="20">
       <el-table
-        :data="pesquisa.filter((data) => !search || data.draw_id == search)"
-        :default-sort = "{prop: 'draw_id', order: 'descending'}"
+        :data="pagedTableData.filter((data) => !search || data.draw_id == search)"
+        :default-sort = "{prop: 'draw_id', order: 'ascend'}"
         style="width: 100%; border-radius: 1rem"
       >
 
@@ -43,6 +43,15 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class="paginacao">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="this.pesquisa.length"
+        @current-change="setPage"
+      >
+      </el-pagination>
+    </div>
     </el-row>
 
   </div>
@@ -61,16 +70,27 @@ export default {
         };
       }),
       search: "",
+      page: 1,
+      pageSize: 10,
     };
   },
   computed: {
     $allLotteries() {
       return this.$store.getters.$allLotteries;
     },
+    pagedTableData() {
+      return this.pesquisa.slice(
+        this.pageSize * this.page - this.pageSize,
+        this.pageSize * this.page
+      );
+    },
   },
   methods: {
     issue(row) {
       this.$router.push(`/${this.to}/${row}`);
+    },
+    setPage(valu) {
+      this.page = valu;
     },
   },
   props: {

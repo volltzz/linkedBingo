@@ -69,7 +69,7 @@ export default {
       login: {
         user: "",
         pass: "",
-        device_id: "02:50:3F:9E:0D:AD",
+        device_id: "1",
         client_version: "1.0.0.0",
       },
     };
