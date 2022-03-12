@@ -3,7 +3,7 @@
     <HeaderBar />
     <div class="pt-3">
       <SubTitle title="Lotteries" />
-      <LoterryList :to="to" />
+      <LoterryList :to="to" :BtnText="BtnText" />
     </div>
   </div>
 </template>
@@ -12,6 +12,10 @@
 export default {
    props: {
     to:{
+      Type: String,
+      require: true,
+    },
+    BtnText:{
       Type: String,
       require: true,
     },

@@ -4,8 +4,9 @@
       <el-table
         :data="pesquisa.filter((data) => !search || data.draw_id == search)"
         :default-sort = "{prop: 'draw_id', order: 'descending'}"
-        style="width: 100%"
+        style="width: 100%; border-radius: 1rem"
       >
+
         <el-table-column label="ID" width="180" prop="draw_id" sortable>
         </el-table-column>
 
@@ -37,12 +38,13 @@
               size="mini"
               type="success"
               @click="issue(scope.row.draw_id)"
-              >Issue</el-button
+              >{{BtnText}}</el-button
             >
           </template>
         </el-table-column>
       </el-table>
     </el-row>
+
   </div>
 </template>
 
@@ -73,6 +75,10 @@ export default {
   },
   props: {
     to: {
+      Type: String,
+      require: true,
+    },
+     BtnText:{
       Type: String,
       require: true,
     },

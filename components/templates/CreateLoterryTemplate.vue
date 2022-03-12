@@ -2,9 +2,7 @@
   <div class="pt-2">
     <HeaderBar />
     <div class="pt-3 ">
-      <div class="text-center">
       <SubTitle title="Create Loterry" />
-      </div>
       <FormCreateLoterry />
     </div>
   </div>
