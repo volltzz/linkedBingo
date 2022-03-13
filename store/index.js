@@ -89,6 +89,7 @@ export const actions = {
         playersId: issue.playersId,
       });
       console.log(csv);
+      
       commit("SET_CSV", csv);
     } catch (error) {
       const buttonState = false;
