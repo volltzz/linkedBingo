@@ -1,0 +1,11 @@
+{
+  "env": {
+    "SERVER_API_URL": "http://3.145.195.66:8040"
+  },
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/vercel-builder"
+    }
+  ]
+}
