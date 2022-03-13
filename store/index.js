@@ -88,11 +88,12 @@ export const actions = {
         draw_id: issue.draw_id,
         playersId: issue.playersId,
       });
+      console.log(csv);
       commit("SET_CSV", csv);
     } catch (error) {
       const buttonState = false;
       commit("SET_BUTTON_STATE", buttonState);
-      console.log("Erro ao carregar csv na store");
+      console.log(error);
     } finally {
       const buttonState = false;
       commit("SET_BUTTON_STATE", buttonState);
